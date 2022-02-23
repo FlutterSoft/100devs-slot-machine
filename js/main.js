@@ -19,11 +19,23 @@ let slotMachine = {}
         let slot2 = slotMachine.randomSelection()
         let slot3 = slotMachine.randomSelection()
         slotMachine.slots = [slot1, slot2, slot3]
-        document.querySelector('#left').style.backgroundImage = arrPics[slot1]
-        document.querySelector('#center').style.backgroundImage = arrPics[slot2]
-        document.querySelector('#right').style.backgroundImage = arrPics[slot3]
+
+        // Sets slot images to blank for a moment
+        document.querySelector('#left').style.backgroundImage = 'none'
+        document.querySelector('#center').style.backgroundImage = 'none'
+        document.querySelector('#right').style.backgroundImage = 'none'
+
+        // Sets slot images
+        setTimeout(function(){ document.querySelector('#left').style.backgroundImage = arrPics[slot1] }, 200)
+        setTimeout(function(){ document.querySelector('#center').style.backgroundImage = arrPics[slot2] }, 400)
+        setTimeout(function(){ document.querySelector('#right').style.backgroundImage = arrPics[slot3] }, 600)
+        // document.querySelector('#left').classList.toggle('hit')
+        // setTimeout(function(){ document.querySelector('#left').classList.add('.hit')}, 200)
+
+        
     }
 
+    
     // Raise the bet by 10
     slotMachine.raiseBet = function(){
         if (slotMachine.money > slotMachine.bet){
@@ -38,6 +50,17 @@ let slotMachine = {}
             slotMachine.bet -= 10
             document.querySelector('#bet').innerText = slotMachine.bet
         }
+    }
+
+    // Set bet to minimum (10)
+    slotMachine.minimum = function(){
+        slotMachine.bet = 10
+        document.querySelector('#bet').innerText = slotMachine.bet
+    }
+     // Set bet to maximum (max money)
+     slotMachine.maximum = function(){
+        slotMachine.bet = slotMachine.money
+        document.querySelector('#bet').innerText = slotMachine.bet
     }
 
     // Remove bet money, add win money if win
@@ -58,10 +81,11 @@ let slotMachine = {}
             document.querySelector('#money').innerText = slotMachine.money
         }
         else {
-            console.log('lose')
             document.querySelector('#money').innerText = slotMachine.money
             document.querySelector('#win').innerText = win
-
+        }
+        if (slotMachine.money == 0){
+            document.querySelector('footer').innerText = 'Game over man. Go home.'
         }
     }   
 
@@ -80,6 +104,9 @@ document.querySelector('#money').innerText = slotMachine.money
 document.querySelector('#spin').addEventListener('click', slotMachine.spin)
 document.querySelector('#raise').addEventListener('click', slotMachine.raiseBet)
 document.querySelector('#lower').addEventListener('click', slotMachine.lowerBet)
+document.querySelector('#minimum').addEventListener('click', slotMachine.minimum)
+document.querySelector('#maximum').addEventListener('click', slotMachine.maximum)
+
 
 
 
