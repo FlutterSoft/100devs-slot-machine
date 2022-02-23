@@ -3,7 +3,7 @@
  add minimum and maximum bet button
 */
 
-const arrPics = ['url(../SlotMachine/images/cat0.png)','url(../SlotMachine/images/cat1.png)', 'url(../SlotMachine/images/cat2.png)', 'url(../SlotMachine/images/cat3.png)', 'url(../SlotMachine/images/cat4.png)']
+const arrPics = ['url(./images/cat0.png)','url(./images/cat1.png)', 'url(./images/cat2.png)', 'url(./images/cat3.png)', 'url(./images/cat4.png)']
 
 // Create slot machine object
 let slotMachine = {}
@@ -35,7 +35,6 @@ let slotMachine = {}
         
     }
 
-    
     // Raise the bet by 10
     slotMachine.raiseBet = function(){
         if (slotMachine.money > slotMachine.bet){
@@ -95,7 +94,6 @@ let slotMachine = {}
             slotMachine.setSlots()
             slotMachine.changeMoney()
         }
-
     }
 
 // When spin, randomise slots, set slot img src to random array selection, deduct bet, add winnings to money, 
@@ -106,13 +104,3 @@ document.querySelector('#raise').addEventListener('click', slotMachine.raiseBet)
 document.querySelector('#lower').addEventListener('click', slotMachine.lowerBet)
 document.querySelector('#minimum').addEventListener('click', slotMachine.minimum)
 document.querySelector('#maximum').addEventListener('click', slotMachine.maximum)
-
-
-
-
-
-
-
-
-
-
