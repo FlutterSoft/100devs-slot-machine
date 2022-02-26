@@ -46,11 +46,14 @@ section.container{
 #left, #center, #right {
      border: 3px solid black;
      border-radius: 55px;
-     height: 200px;
+     min-height: 120px;
      width: 20%;    
-     background-size:cover;
+     min-width: 140px;
+     background-size:100% auto;
      background-repeat:no-repeat;
+     background-position: center;
      box-shadow: 1px 1px 2px #260327, 0 0 25px #89d1dc;    
+
       
      
 }

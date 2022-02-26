@@ -58,7 +58,7 @@ let slotMachine = {}
     }
      // Set bet to maximum (max money)
      slotMachine.maximum = function(){
-        slotMachine.bet = slotMachine.money
+         slotMachine.bet = slotMachine.money || 10
         document.querySelector('#bet').innerText = slotMachine.bet
     }
 
@@ -68,24 +68,19 @@ let slotMachine = {}
         slotMachine.money -= slotMachine.bet
         if (slotMachine.slots[0] === slotMachine.slots[1] && slotMachine.slots[1] === slotMachine.slots[2]){
             win = slotMachine.bet * 8
-            slotMachine.money += win
-            document.querySelector('#win').innerText = win
-            document.querySelector('#money').innerText = slotMachine.money
-            
+            slotMachine.money += win          
         }
         else if (slotMachine.slots[0] === slotMachine.slots[1] || slotMachine.slots[1] === slotMachine.slots[2]){
             win = slotMachine.bet * 3
             slotMachine.money += win
-            document.querySelector('#win').innerText = win
-            document.querySelector('#money').innerText = slotMachine.money
         }
-        else {
-            document.querySelector('#money').innerText = slotMachine.money
-            document.querySelector('#win').innerText = win
-        }
-        if (slotMachine.money == 0){
+ 
+        if (slotMachine.money === 0){
             document.querySelector('footer').innerText = 'Game over man. Go home.'
         }
+
+        document.querySelector('#money').innerText = slotMachine.money
+        document.querySelector('#win').innerText = win
     }   
 
     // Spin time! Run functions if user has enough money
@@ -99,7 +94,7 @@ let slotMachine = {}
 // When spin, randomise slots, set slot img src to random array selection, deduct bet, add winnings to money, 
 document.querySelector('#bet').innerText = slotMachine.bet
 document.querySelector('#money').innerText = slotMachine.money
-document.querySelector('#spin').addEventListener('click', slotMachine.spin)
+document.querySelector('#spin').addEventListener('click', slotMachine.spin) 
 document.querySelector('#raise').addEventListener('click', slotMachine.raiseBet)
 document.querySelector('#lower').addEventListener('click', slotMachine.lowerBet)
 document.querySelector('#minimum').addEventListener('click', slotMachine.minimum)
